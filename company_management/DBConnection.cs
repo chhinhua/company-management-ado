@@ -9,18 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dapper;
 using NLog.Fluent;
+using company_management.View;
 
 namespace company_management
 {
-    public class DBConnection
+    public class DBConnection : IDisposable
     {
-        
         public string connString = Properties.Settings.Default.connStr;
         public SqlConnection connection;
 
         public DBConnection()
         {
             connection = new SqlConnection(connString);
+        }
+
+        public void Alert(string msg, FormAlert.enmType type)
+        {
+            FormAlert frm = new FormAlert();
+            frm.showAlert(msg, type);
         }
 
         public object ExecuteScalar(string query)
@@ -43,28 +49,6 @@ namespace company_management
             {
                 connection.Close();
             }
-        }
-
-        public DataTable LoadData(string tableName)
-        {
-            string query = string.Format("SELECT * FROM {0}", tableName);
-            DataTable dataTable = new DataTable();
-            try
-            {
-                connection = new SqlConnection(connString);
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return dataTable;
         }
 
         public List<T> GetListObjectsByQuery<T>(string query) where T : class
@@ -96,26 +80,6 @@ namespace company_management
             return objects;
         }
 
-        public DataTable SearchData(string query)
-        {
-            DataTable dataTable = new DataTable();
-            try
-            {
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return dataTable;
-        }
-
         public T GetObjectByQuery<T>(string query) where T : class
         {
             using (SqlConnection connection = new SqlConnection(connString)) 
@@ -126,8 +90,9 @@ namespace company_management
             }
         }
 
-        public void ExecuteQuery(string sqlStr)
+        public bool ExecuteQuery(string sqlStr)
         {
+            bool action = false;
             try
             {
                 using (SqlConnection connection = new SqlConnection(connString))
@@ -137,14 +102,40 @@ namespace company_management
 
                     if (cmd.ExecuteNonQuery() > 0)
                     {
-                        MessageBox.Show("Successfully!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        action = true;
                     }
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-                MessageBox.Show("Acction faild!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.ToString());
+            }
+
+            return action;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // Giải phóng các tài nguyên quản lý ở đây.
+                if (connection != null)
+                {
+                    if (connection.State != ConnectionState.Closed)
+                    {
+                        connection.Close(); // Đóng kết nối nếu đang mở
+                    }
+
+                    connection.Dispose(); // Giải phóng kết nối
+                    connection = null;
+                }
             }
         }
 

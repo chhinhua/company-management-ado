@@ -8,19 +8,23 @@ namespace company_management.DTO
 {
     public class Salary
     {
-        private int id;
-        private int idUser;
-        private decimal basicSalary;
-        private double totalHours;
-        private double overtimeHours;
-        private double leaveHours;
-        private decimal bonus;
-        private decimal finalSalary;
-
+        public int Id { get; set; }
+        public int IdUser { get; set; }
+        public decimal BasicSalary { get; set; }
+        public double TotalHours { get; set; }
+        public double OvertimeHours { get; set; }
+        public double LeaveHours { get; set; }
+        public decimal Bonus { get; set; }
+        public decimal Allowance { get; set; }
+        public decimal Tax { get; set; }
+        public decimal Insurance { get; set; }
+        public decimal FinalSalary { get; set; }
+        public DateTime FromDate { get; set; }
+        public DateTime ToDate { get; set; }
+        
         public Salary() { }
-
-        public Salary(int idUser, decimal basicSalary, double totalHours, double overtimeHours,
-                        double leaveHours, decimal bonus)
+        
+        public Salary(int idUser, decimal basicSalary, double totalHours, double overtimeHours, double leaveHours, decimal bonus, decimal allowance, decimal tax, decimal insurance, decimal finalSalary)
         {
             IdUser = idUser;
             BasicSalary = basicSalary;
@@ -28,37 +32,10 @@ namespace company_management.DTO
             OvertimeHours = overtimeHours;
             LeaveHours = leaveHours;
             Bonus = bonus;
-            FinalSalary = calculateFinalSalary();
+            Allowance = allowance;
+            Tax = tax;
+            Insurance = insurance;
+            FinalSalary = finalSalary;
         }
-
-        public decimal calculateFinalSalary()
-        {
-            decimal hourlyRate = BasicSalary / 176;
-            decimal overtimeRate = 1.5m * hourlyRate;
-
-            decimal overtimePay = (decimal)OvertimeHours * overtimeRate;
-            decimal leaveDeduction = (decimal)LeaveHours * hourlyRate;
-            decimal finalSalary = BasicSalary + overtimePay - leaveDeduction + Bonus;
-
-            return Math.Round(finalSalary, 2); // làm tròn đến 2 chữ số sau dấu phẩy
-        }
-
-        public int Id { get => id; set => id = value; }
-        public int IdUser { get => idUser; set => idUser = value; }
-        public decimal BasicSalary { get => basicSalary; set => basicSalary = value; }
-        public double TotalHours { get => totalHours; set => totalHours = value; }
-        public double OvertimeHours { get => overtimeHours; set => overtimeHours = value; }
-        public double LeaveHours { get => leaveHours; set => leaveHours = value; }
-        public decimal Bonus { get => bonus; set => bonus = value; }
-        public decimal FinalSalary { get => finalSalary; set => finalSalary = value; }
-
-        public override string ToString()
-            => $"User Id: {IdUser}" +
-               $"\nBasicSalary: {BasicSalary}" +
-               $"\nTotalHours: {TotalHours}" +
-               $"\nOvertimeHours: {OvertimeHours}" +
-               $"\nLeaveHours: {LeaveHours}" +
-               $"\nBonus: {Bonus}%" +
-               $"\nFinal Salary: {FinalSalary}%";
     }
 }

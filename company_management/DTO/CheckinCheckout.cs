@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace company_management.DTO
 {
     public class CheckinCheckout
     {
-        private int id;
-        private int idUser;
-        private DateTime checkinTime;
-        private DateTime checkoutTime;
-        private double totalHours;
-        private DateTime date;
-
+        public int Id { get; set; }
+        public int IdUser { get; set; }
+        public DateTime CheckinTime { get; set; }
+        public DateTime CheckoutTime { get; set; }
+        public double TotalHours { get; set; }
+        public DateTime Date { get; set; }
+        
         public CheckinCheckout() { }
 
         public CheckinCheckout(int idUser, DateTime checkinTime, DateTime date)
@@ -33,22 +29,10 @@ namespace company_management.DTO
             Date = date;
         }
 
-        public int Id { get => id; set => id = value; }
-        public int IdUser { get => idUser; set => idUser = value; }
-        public DateTime CheckinTime { get => checkinTime; set => checkinTime = value; }
-        public DateTime CheckoutTime { get => checkoutTime; set => checkoutTime = value; }
-        public double TotalHours { get => totalHours; set => totalHours = value; }
-        public DateTime Date { get => date; set => date = value; }
-
         public double CalculateTotalHours()
         {
-            TotalHours = (checkoutTime - checkinTime).TotalHours;
+            TotalHours = (CheckoutTime - CheckinTime).TotalHours;
             return Math.Round(TotalHours, 2);
         }
-
-
-        public override string ToString() 
-            => $"IdUser: {IdUser}\nCheckinTime: {CheckinTime}" +
-               $"\nCheckoutTime: {CheckoutTime}\nTotalHours: {TotalHours}\nDate: {Date}%";
     }
 }

@@ -92,21 +92,6 @@
     <Reference Include="Microsoft.Data.SqlClient, Version=1.13.20136.2, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.SqlClient.1.1.3\lib\net46\Microsoft.Data.SqlClient.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.3.1.32\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Abstractions.3.1.32\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Design.3.1.32\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.3.1.32\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.SqlServer, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.SqlServer.3.1.32\lib\netstandard2.0\Microsoft.EntityFrameworkCore.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.3.1.32\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
     </Reference>
@@ -386,225 +371,182 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BUS\CheckinCheckoutBUS.cs" />
-    <Compile Include="BUS\ProjectBUS.cs" />
-    <Compile Include="BUS\TaskBUS.cs" />
-    <Compile Include="BUS\TeamBUS.cs" />
-    <Compile Include="BUS\UserBUS.cs" />
-    <Compile Include="DAO\CheckinCheckoutDAO.cs" />
-    <Compile Include="DAO\ImageDAO.cs" />
-    <Compile Include="DAO\KpiDAO.cs" />
-    <Compile Include="DAO\LeaveRequestDAO.cs" />
-    <Compile Include="DAO\ProjectDAO.cs" />
-    <Compile Include="DAO\SalaryDAO.cs" />
-    <Compile Include="DAO\TaskDAO.cs" />
-    <Compile Include="DAO\TeamDAO.cs" />
-    <Compile Include="DAO\UserDAO.cs" />
+    <Compile Include="BUS\CheckinCheckoutBus.cs" />
+    <Compile Include="BUS\HomeBus.cs" />
+    <Compile Include="BUS\LeaveRequestBus.cs" />
+    <Compile Include="BUS\ProjectBus.cs" />
+    <Compile Include="BUS\SalaryBus.cs" />
+    <Compile Include="BUS\TaskBus.cs" />
+    <Compile Include="BUS\TeamBus.cs" />
+    <Compile Include="BUS\UserBus.cs" />
+    <Compile Include="DAO\CheckinCheckoutDao.cs" />
+    <Compile Include="DAO\ImageDao.cs" />
+    <Compile Include="DAO\LeaveRequestDao.cs" />
+    <Compile Include="DAO\ProjectDao.cs" />
+    <Compile Include="DAO\SalaryDao.cs" />
+    <Compile Include="DAO\TaskDao.cs" />
+    <Compile Include="DAO\TeamDao.cs" />
+    <Compile Include="DAO\UserDao.cs" />
     <Compile Include="DBConnection.cs" />
     <Compile Include="DTO\Constants.cs" />
-    <Compile Include="DTO\MappingExtensions.cs" />
     <Compile Include="DTO\Project.cs" />
     <Compile Include="DTO\Team.cs" />
-    <Compile Include="DTO\TimeKeepingDTO.cs" />
     <Compile Include="DTO\CheckinCheckout.cs" />
-    <Compile Include="DTO\Company.cs" />
-    <Compile Include="DTO\KpiDTO.cs" />
     <Compile Include="DTO\LeaveRequest.cs" />
     <Compile Include="DTO\Salary.cs" />
     <Compile Include="DTO\Task.cs" />
     <Compile Include="DTO\TaskStatusPercentage.cs" />
     <Compile Include="DTO\User.cs" />
     <Compile Include="DTO\UserSession.cs" />
-    <Compile Include="Entities\checkin_checkout.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GetTaskStatusPercentage_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\kpi.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\leave_request.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\position.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\role.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\salary.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\sysdiagram.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\task.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\team.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\user.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\user_position.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\AddRequestForm.cs">
+    <Compile Include="Utilities\HomeStatistics.cs" />
+    <Compile Include="Utilities\RequestStatistics.cs" />
+    <Compile Include="Utilities\SalariesStatistics.cs" />
+    <Compile Include="Utilities\Utils.cs" />
+    <Compile Include="View\FormAddRequest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\AddRequestForm.Designer.cs">
-      <DependentUpon>AddRequestForm.cs</DependentUpon>
+    <Compile Include="View\FormAddRequest.Designer.cs">
+      <DependentUpon>FormAddRequest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddTaskForm.cs">
+    <Compile Include="View\FormAddTask.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\AddTaskForm.Designer.cs">
-      <DependentUpon>AddTaskForm.cs</DependentUpon>
+    <Compile Include="View\FormAddTask.Designer.cs">
+      <DependentUpon>FormAddTask.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CompanyInfoForm.cs">
+    <Compile Include="View\FormAddTaskFromProject.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CompanyInfoForm.Designer.cs">
-      <DependentUpon>CompanyInfoForm.cs</DependentUpon>
+    <Compile Include="View\FormAddTaskFromProject.Designer.cs">
+      <DependentUpon>FormAddTaskFromProject.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormLeaveQuest.cs">
+    <Compile Include="View\FormAlert.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FormLeaveQuest.Designer.cs">
-      <DependentUpon>FormLeaveQuest.cs</DependentUpon>
+    <Compile Include="View\FormAlert.Designer.cs">
+      <DependentUpon>FormAlert.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormMain.cs">
+    <Compile Include="View\FormCalculateSalary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FormMain.Designer.cs">
+    <Compile Include="View\FormCalculateSalary.Designer.cs">
+      <DependentUpon>FormCalculateSalary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormCompanyInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormCompanyInfo.Designer.cs">
+      <DependentUpon>FormCompanyInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\frmAddProject.cs">
+    <Compile Include="View\FormAddProject.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\frmAddProject.Designer.cs">
-      <DependentUpon>frmAddProject.cs</DependentUpon>
+    <Compile Include="View\FormAddProject.Designer.cs">
+      <DependentUpon>FormAddProject.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoginForm.cs">
+    <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
+    <Compile Include="View\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\PasswordChangeForm.cs">
+    <Compile Include="View\FormPasswordChange.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\PasswordChangeForm.Designer.cs">
-      <DependentUpon>PasswordChangeForm.cs</DependentUpon>
+    <Compile Include="View\FormPasswordChange.Designer.cs">
+      <DependentUpon>FormPasswordChange.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UC\UCHome.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UC\UCHome.Designer.cs">
-      <DependentUpon>UCHome.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UC\UCLeaveRequest.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UC\UCLeaveRequest.Designer.cs">
-      <DependentUpon>UCLeaveRequest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UC\UCSalary.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UC\UCSalary.Designer.cs">
-      <DependentUpon>UCSalary.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UC\UCTask.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UC\UCTask.Designer.cs">
-      <DependentUpon>UCTask.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UC\UCTimeKeeping.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UC\UCTimeKeeping.Designer.cs">
-      <DependentUpon>UCTimeKeeping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UC\UC_KPI.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UC\UC_KPI.Designer.cs">
-      <DependentUpon>UC_KPI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UC\UC_Project.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UC\UC_Project.Designer.cs">
-      <DependentUpon>UC_Project.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UC\UC_Team.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UC\UC_Team.Designer.cs">
-      <DependentUpon>UC_Team.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UC\UpdateCPInfoUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UC\UpdateCPInfoUC.Designer.cs">
-      <DependentUpon>UpdateCPInfoUC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UC\UserManagementUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UC\UserManagementUC.Designer.cs">
-      <DependentUpon>UserManagementUC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserProfileForm.cs">
+    <Compile Include="View\FormViewOrUpdateRequest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\UserProfileForm.Designer.cs">
-      <DependentUpon>UserProfileForm.cs</DependentUpon>
+    <Compile Include="View\FormViewOrUpdateRequest.Designer.cs">
+      <DependentUpon>FormViewOrUpdateRequest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\VerifyEmailForm.cs">
+    <Compile Include="View\UC\UcHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UC\UcHome.Designer.cs">
+      <DependentUpon>UcHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC\UcLeaveRequest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UC\UcLeaveRequest.Designer.cs">
+      <DependentUpon>UcLeaveRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC\UcSalary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UC\UcSalary.Designer.cs">
+      <DependentUpon>UcSalary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC\UcTask.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UC\UcTask.Designer.cs">
+      <DependentUpon>UcTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC\UcTimeKeeping.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UC\UcTimeKeeping.Designer.cs">
+      <DependentUpon>UcTimeKeeping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC\UcProject.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UC\UcProject.Designer.cs">
+      <DependentUpon>UcProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC\UcTeam.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UC\UcTeam.Designer.cs">
+      <DependentUpon>UcTeam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC\UcUpdateCPInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UC\UcUpdateCPInfo.Designer.cs">
+      <DependentUpon>UcUpdateCPInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC\UcUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UC\UcUser.Designer.cs">
+      <DependentUpon>UcUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormUserProfile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\VerifyEmailForm.Designer.cs">
-      <DependentUpon>VerifyEmailForm.cs</DependentUpon>
+    <Compile Include="View\FormUserProfile.Designer.cs">
+      <DependentUpon>FormUserProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewOrUpdateProject.cs">
+    <Compile Include="View\FormVerifyEmail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\ViewOrUpdateProject.Designer.cs">
-      <DependentUpon>ViewOrUpdateProject.cs</DependentUpon>
+    <Compile Include="View\FormVerifyEmail.Designer.cs">
+      <DependentUpon>FormVerifyEmail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewOrUpdateTaskForm.cs">
+    <Compile Include="View\FormViewOrUpdateProject.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\ViewOrUpdateTaskForm.Designer.cs">
-      <DependentUpon>ViewOrUpdateTaskForm.cs</DependentUpon>
+    <Compile Include="View\FormViewOrUpdateProject.Designer.cs">
+      <DependentUpon>FormViewOrUpdateProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormViewOrUpdateTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormViewOrUpdateTask.Designer.cs">
+      <DependentUpon>FormViewOrUpdateTask.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -617,79 +559,78 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\AddRequestForm.resx">
-      <DependentUpon>AddRequestForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormAddRequest.resx">
+      <DependentUpon>FormAddRequest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\AddTaskForm.resx">
-      <DependentUpon>AddTaskForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormAddTask.resx">
+      <DependentUpon>FormAddTask.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CompanyInfoForm.resx">
-      <DependentUpon>CompanyInfoForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormAddTaskFromProject.resx">
+      <DependentUpon>FormAddTaskFromProject.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FormLeaveQuest.resx">
-      <DependentUpon>FormLeaveQuest.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormAlert.resx">
+      <DependentUpon>FormAlert.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FormMain.resx">
+    <EmbeddedResource Include="View\FormCalculateSalary.resx">
+      <DependentUpon>FormCalculateSalary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormCompanyInfo.resx">
+      <DependentUpon>FormCompanyInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\frmAddProject.resx">
-      <DependentUpon>frmAddProject.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormAddProject.resx">
+      <DependentUpon>FormAddProject.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\PasswordChangeForm.resx">
-      <DependentUpon>PasswordChangeForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormPasswordChange.resx">
+      <DependentUpon>FormPasswordChange.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UC\UCHome.resx">
-      <DependentUpon>UCHome.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormViewOrUpdateRequest.resx">
+      <DependentUpon>FormViewOrUpdateRequest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UC\UCLeaveRequest.resx">
-      <DependentUpon>UCLeaveRequest.cs</DependentUpon>
+    <EmbeddedResource Include="View\UC\UcHome.resx">
+      <DependentUpon>UcHome.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UC\UCSalary.resx">
-      <DependentUpon>UCSalary.cs</DependentUpon>
+    <EmbeddedResource Include="View\UC\UcLeaveRequest.resx">
+      <DependentUpon>UcLeaveRequest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UC\UCTask.resx">
-      <DependentUpon>UCTask.cs</DependentUpon>
+    <EmbeddedResource Include="View\UC\UcSalary.resx">
+      <DependentUpon>UcSalary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UC\UCTimeKeeping.resx">
-      <DependentUpon>UCTimeKeeping.cs</DependentUpon>
+    <EmbeddedResource Include="View\UC\UcTask.resx">
+      <DependentUpon>UcTask.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UC\UC_KPI.resx">
-      <DependentUpon>UC_KPI.cs</DependentUpon>
+    <EmbeddedResource Include="View\UC\UcTimeKeeping.resx">
+      <DependentUpon>UcTimeKeeping.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UC\UC_Project.resx">
-      <DependentUpon>UC_Project.cs</DependentUpon>
+    <EmbeddedResource Include="View\UC\UcProject.resx">
+      <DependentUpon>UcProject.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UC\UC_Team.resx">
-      <DependentUpon>UC_Team.cs</DependentUpon>
+    <EmbeddedResource Include="View\UC\UcTeam.resx">
+      <DependentUpon>UcTeam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UC\UpdateCPInfoUC.resx">
-      <DependentUpon>UpdateCPInfoUC.cs</DependentUpon>
+    <EmbeddedResource Include="View\UC\UcUpdateCPInfo.resx">
+      <DependentUpon>UcUpdateCPInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UC\UserManagementUC.resx">
-      <DependentUpon>UserManagementUC.cs</DependentUpon>
+    <EmbeddedResource Include="View\UC\UcUser.resx">
+      <DependentUpon>UcUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UserProfileForm.resx">
-      <DependentUpon>UserProfileForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormUserProfile.resx">
+      <DependentUpon>FormUserProfile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\VerifyEmailForm.resx">
-      <DependentUpon>VerifyEmailForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormVerifyEmail.resx">
+      <DependentUpon>FormVerifyEmail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ViewOrUpdateProject.resx">
-      <DependentUpon>ViewOrUpdateProject.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormViewOrUpdateProject.resx">
+      <DependentUpon>FormViewOrUpdateProject.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ViewOrUpdateTaskForm.resx">
-      <DependentUpon>ViewOrUpdateTaskForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormViewOrUpdateTask.resx">
+      <DependentUpon>FormViewOrUpdateTask.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="Entities\Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Entities\Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -753,13 +694,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Database.mdf</DependentUpon>
-    </Content>
+    <Content Include="Resources\icons8_eye_25.png" />
+    <None Include="Resources\warning.png" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\success.png" />
+    <None Include="Resources\icons8_cancel_25px.png" />
     <None Include="Resources\icons8-project-501.png" />
     <None Include="Resources\icons8-project-50.png" />
     <None Include="Resources\icons8-refresh-32.png" />
@@ -806,16 +745,10 @@
     <None Include="Resources\arrow-back-up.png" />
     <None Include="Resources\eye-filled.png" />
     <None Include="Resources\edit.png" />
-    <Content Include="Entities\Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Entities\Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
+    <None Include="Resources\edit - Copy.png" />
+    <None Include="Resources\error.png" />
+    <None Include="Resources\caculate-salary.jpg" />
+    <None Include="Resources\icons8-calculate-50.png" />
     <Content Include="Resources\icons8-cancel-48.png" />
   </ItemGroup>
   <ItemGroup />

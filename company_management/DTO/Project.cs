@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace company_management.DTO
 {
     public class Project
     {
-        private int id;
-        private int idCreator;
-        private int idAssignee;
-        private string name;
-        private string description;
-        private DateTime startDate;
-        private DateTime endDate;
-        private int progress;
-        private int idTeam;
-        private decimal bonus;
-
+        public int Id { get; set; }
+        public int IdCreator { get; set; }
+        public int IdAssignee { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public int Progress { get; set; }
+        public int IdTeam { get; set; }
+        public decimal Bonus { get; set; }
+        
         public Project() { }
 
         public Project(int idCreator, int idAssignee, string name, string description, 
@@ -35,15 +31,5 @@ namespace company_management.DTO
             Bonus = bonus;
         }
 
-        public int Id { get => id; set => id = value; }
-        public int IdCreator { get => idCreator; set => idCreator = value; }
-        public int IdAssignee { get => idAssignee; set => idAssignee = value; }
-        public string Name { get => name; set => name = value; }
-        public string Description { get => description; set => description = value; }
-        public DateTime StartDate { get => startDate; set => startDate = value; }
-        public DateTime EndDate { get => endDate; set => endDate = value; }
-        public int Progress { get => progress; set => progress = value; }
-        public int IdTeam { get => idTeam; set => idTeam = value; }
-        public decimal Bonus { get => bonus; set => bonus = value; }
     }
 }

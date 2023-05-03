@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace company_management.DTO
+﻿namespace company_management.DTO
 {
     public class Team
     {
-        private int id;
-        private string name;
-        private string description;
-        private int idLeader;
-        private byte[] avatar;
-
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int IdLeader { get; set; }
+        public byte[] Avatar { get; set; }
+     
         public Team() { }
 
         public Team(string name, string description, int idLeader)
@@ -22,11 +16,5 @@ namespace company_management.DTO
             Description = description;
             IdLeader = idLeader;
         }
-
-        public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public string Description { get => description; set => description = value; }
-        public int IdLeader { get => idLeader; set => idLeader = value; }
-        public byte[] Avatar { get => avatar; set => avatar = value; }
     }
 }

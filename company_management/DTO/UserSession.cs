@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using company_management.DTO;
-
+﻿
 namespace company_management.DTO
 {
     public static class UserSession
@@ -26,5 +20,4 @@ namespace company_management.DTO
             LoggedInUser = null;
         }
     }
-
 }

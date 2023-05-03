@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using company_management.Views;
+using company_management.View;
 using company_management.DAO;
 using company_management.DTO;
 using System.Data;
@@ -17,7 +17,7 @@ namespace company_management
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new FormLogin());
         }
 
     }
