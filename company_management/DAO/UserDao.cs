@@ -108,9 +108,9 @@ namespace company_management.DAO
 
         public User GetLeaderByUser(User user)
         {
-            string query = string.Format("select * from users where id = (select idLeader " +
+            string query = string.Format("select * from users where id in (select idLeader " +
                                                                         "from teams " +
-                                                                        "where id = (select idTeam " +
+                                                                        "where id in (select idTeam " +
                                                                                    "from user_team " +
                                                                                    "where idUser = '{0}'))", user.Id);
             return _dBConnection.GetObjectByQuery<User>(query);

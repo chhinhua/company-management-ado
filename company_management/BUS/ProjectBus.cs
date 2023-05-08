@@ -94,6 +94,7 @@ namespace company_management.BUS
             var projectDao = _projectDao.Value;
             var userBus = _userBus.Value;
             var userDao = _userDao.Value;
+            var teamDao = _teamDao.Value;
             
             ClearListProject(projects);
 
@@ -101,9 +102,14 @@ namespace company_management.BUS
             {
                 projects = projectDao.GetAllProject();
             }
+            else if(userBus.IsLeader())
+            {
+                projects = projectDao.GetLeaderpojects();
+            }
             else
             {
-                projects = projectDao.GetMyProjects();
+                Team team = teamDao.GetTeamByUser(UserSession.LoggedInUser.Id);
+                projects = projectDao.GetProjectByTeam();
             }
 
             return projects;

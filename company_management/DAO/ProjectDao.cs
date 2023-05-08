@@ -14,12 +14,14 @@ namespace company_management.DAO
         private readonly DBConnection _dBConnection;
         private readonly Lazy<TeamDao> _teamDao;
         private readonly Utils _utils;
+        private Lazy<UserDao> _userDao;
 
         public ProjectDao()
         {
             _dBConnection = new DBConnection();
             _teamDao = new Lazy<TeamDao>(() => new TeamDao());
             _utils = new Utils();
+            _userDao = new Lazy<UserDao>(() => new UserDao()); 
         }
 
         public void AddProject(Project project)
@@ -102,10 +104,10 @@ namespace company_management.DAO
             return GetAllProject().Where(t => t.IdAssignee == idAssignee).ToList();
         }
         
-        public List<Project> GetMyProjects()
+        public List<Project> GetLeaderpojects()
         {
-            var team = _teamDao.Value.GetTeamByUser(UserSession.LoggedInUser.Id);
-            return GetAllProject().Where(t => t.IdTeam == team.Id).ToList();
+            var leader = _userDao.Value.GetLeaderByUser(UserSession.LoggedInUser);
+            return GetAllProject().Where(t => t.IdAssignee == leader.Id).ToList();
         }
 
         public Project GetProjectById(int id)
@@ -114,10 +116,10 @@ namespace company_management.DAO
             return _dBConnection.GetObjectByQuery<Project>(query);
         }
         
-        public Project GetProjectByTeam(int idTeam)
+        public List<Project> GetProjectByTeam()
         {
-            string query = $"SELECT DISTINCT FROM project WHERE idTeam = {idTeam}";
-            return _dBConnection.GetObjectByQuery<Project>(query);
+            var team = _teamDao.Value.GetTeamByUser(UserSession.LoggedInUser.Id);
+            return GetAllProject().Where(t => t.IdTeam == team.Id).ToList();
         }
     }
 }
