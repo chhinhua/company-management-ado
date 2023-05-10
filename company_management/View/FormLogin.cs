@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using company_management.DTO;
 using company_management.DAO;
 using company_management.Utilities;
+// ReSharper disable All
 
 namespace company_management.View
 {
@@ -43,7 +44,7 @@ namespace company_management.View
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-             if (CheckDataInput())
+            if (CheckDataInput())
             {
                 string username = tbUsername.Text;
                 string password = tbPassword.Text;
@@ -59,7 +60,7 @@ namespace company_management.View
 
 
                     // Human Resources
-                    loginUser = _userDao.GetUserByUsername(username); // Hr
+                    loginUser = _userDao.GetUserByUsername(username); 
 
                     // Team System Integration
                     //loginUser = _userDao.GetUserByUsername("ádfád"); // employee
@@ -109,7 +110,6 @@ namespace company_management.View
         private void btnForgotpw_Click(object sender, EventArgs e)
         {
             FormVerifyEmail verifyEmail = new FormVerifyEmail();
-            this.Hide();
             verifyEmail.Show();
         }
     }

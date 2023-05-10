@@ -49,6 +49,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcSalary));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             this.panelData = new Guna.UI2.WinForms.Guna2Panel();
             this.btnRefresh = new Guna.UI2.WinForms.Guna2Button();
             this.datagridview_salary = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -69,6 +71,7 @@
             this.label_totalTax = new System.Windows.Forms.Label();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.btn_caculateSalary = new Guna.UI2.WinForms.Guna2Button();
+            this.button_remove = new Guna.UI2.WinForms.Guna2Button();
             this.panelData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview_salary)).BeginInit();
             this.panelFields.SuspendLayout();
@@ -415,7 +418,7 @@
             this.btn_caculateSalary.ForeColor = System.Drawing.Color.Black;
             this.btn_caculateSalary.Image = ((System.Drawing.Image)(resources.GetObject("btn_caculateSalary.Image")));
             this.btn_caculateSalary.ImageSize = new System.Drawing.Size(28, 28);
-            this.btn_caculateSalary.Location = new System.Drawing.Point(997, 188);
+            this.btn_caculateSalary.Location = new System.Drawing.Point(941, 188);
             this.btn_caculateSalary.Name = "btn_caculateSalary";
             this.btn_caculateSalary.ShadowDecoration.CustomizableEdges = customizableEdges16;
             this.btn_caculateSalary.Size = new System.Drawing.Size(278, 50);
@@ -423,11 +426,35 @@
             this.btn_caculateSalary.Text = "Calculation of wages";
             this.btn_caculateSalary.Click += new System.EventHandler(this.btn_caculateSalary_Click);
             // 
+            // button_remove
+            // 
+            this.button_remove.AutoRoundedCorners = true;
+            this.button_remove.BackColor = System.Drawing.Color.Transparent;
+            this.button_remove.BorderRadius = 19;
+            this.button_remove.CustomizableEdges = customizableEdges17;
+            this.button_remove.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.button_remove.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.button_remove.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.button_remove.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.button_remove.FillColor = System.Drawing.Color.Transparent;
+            this.button_remove.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            this.button_remove.ForeColor = System.Drawing.Color.White;
+            this.button_remove.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(168)))), ((int)(((byte)(255)))));
+            this.button_remove.Image = ((System.Drawing.Image)(resources.GetObject("button_remove.Image")));
+            this.button_remove.ImageSize = new System.Drawing.Size(24, 24);
+            this.button_remove.Location = new System.Drawing.Point(1225, 198);
+            this.button_remove.Name = "button_remove";
+            this.button_remove.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            this.button_remove.Size = new System.Drawing.Size(50, 40);
+            this.button_remove.TabIndex = 104;
+            this.button_remove.Click += new System.EventHandler(this.button_remove_Click);
+            // 
             // UcSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.Controls.Add(this.button_remove);
             this.Controls.Add(this.btn_caculateSalary);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.guna2Panel4);
@@ -449,6 +476,8 @@
             this.guna2Panel3.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private Guna.UI2.WinForms.Guna2Button button_remove;
 
         #endregion
 

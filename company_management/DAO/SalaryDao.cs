@@ -169,5 +169,18 @@ namespace company_management.DAO
                 }
             }
         }
+
+        public void DeleteAllSalary()
+        {
+            string query = string.Format("DELETE FROM salary");
+            if (_dBConnection.ExecuteQuery(query))
+            {
+                _utils.Value.Alert("Deleted salary successful", FormAlert.enmType.Success);
+            }
+            else
+            {
+                _utils.Value.Alert("Deleted salary failed", FormAlert.enmType.Error);
+            }
+        }
     }
 }

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using company_management.BUS;
+using company_management.DAO;
 using company_management.DTO;
 using company_management.Utilities;
+// ReSharper disable All
 
 namespace company_management.View.UC
 {
@@ -11,20 +13,28 @@ namespace company_management.View.UC
     {
         private readonly Lazy<Utils> _utils;
         private readonly Lazy<SalaryBus> _salaryBus;
+        private readonly Lazy<SalaryDao> _salaryDao;
 
         public UcSalary()
         {
             InitializeComponent();
             _utils = new Lazy<Utils>(() => new Utils());
             _salaryBus = new Lazy<SalaryBus>(() => new SalaryBus());
+            _salaryDao = new Lazy<SalaryDao>(() => new SalaryDao());
         }
 
         private void LoadData(List<Salary> salaries)
         {
             LoadDataGridview(salaries);
             LoadSalariesStatistics(salaries);
+            CheckControlStatusForHr();
+        }
+
+        private void CheckControlStatusForHr()
+        {
             _utils.Value.CheckCalculateSalaryStatus(btn_caculateSalary);
             _utils.Value.CheckCalculateSalaryStatus(btnRefresh);
+            _utils.Value.CheckCalculateSalaryStatus(button_remove);
         }
 
         private void LoadDataGridview(List<Salary> salaries)
@@ -65,6 +75,16 @@ namespace company_management.View.UC
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadData(GetData());
+        }
+
+        private void button_remove_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Delete salary?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                _salaryDao.Value.DeleteAllSalary();
+                LoadData(GetData());
+            }
         }
     }
 }

@@ -3,6 +3,9 @@ using System.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using company_management.Utilities;
+using company_management.View;
+
 // ReSharper disable All
 
 namespace company_management.DAO
@@ -10,11 +13,13 @@ namespace company_management.DAO
     public sealed class UserDao : IDisposable
     {
         private readonly DBConnection _dBConnection;
+        private readonly Utils _utils;
         private bool _disposed;
 
         public UserDao()
         {
             _dBConnection = new DBConnection();
+            _utils = new Utils();
         }
 
         public List<User> GetAllUser()
@@ -82,6 +87,19 @@ namespace company_management.DAO
             _dBConnection.ExecuteQuery(sqlStr);
         }
 
+        public void UpdateUserPassword(User user)
+        {
+            string query = string.Format("UPDATE users SET password = '{0}' WHERE id = '{1}'", user.Password, user.Id);
+            if (_dBConnection.ExecuteQuery(query))
+            {
+                _utils.Alert("Đổi mật khẩu thành công", FormAlert.enmType.Success);
+            }
+            else
+            {
+                _utils.Alert("Đổi không thành công", FormAlert.enmType.Error);
+            }
+        }
+        
         public void DeleteUser(int id)
         {
             string sqlStr = string.Format("DELETE FROM users WHERE id = '{0}'", id);
@@ -97,6 +115,12 @@ namespace company_management.DAO
         public User GetUserByUsername(string username)
         {
             string query = string.Format("SELECT * FROM users WHERE users.username = '{0}'", username);
+            return _dBConnection.GetObjectByQuery<User>(query);
+        }
+        
+        public User GetUserByEmail(string email)
+        {
+            string query = string.Format("SELECT * FROM users WHERE users.email = '{0}'", email);
             return _dBConnection.GetObjectByQuery<User>(query);
         }
 
