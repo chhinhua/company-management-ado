@@ -30,6 +30,5 @@ namespace company_management.DTO
             IdTeam = idTeam;
             Bonus = bonus;
         }
-
     }
 }

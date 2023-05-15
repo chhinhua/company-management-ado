@@ -30,6 +30,7 @@
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcHome));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -57,17 +58,23 @@
             this.label_team = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.panelData = new Guna.UI2.WinForms.Guna2Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.label11 = new System.Windows.Forms.Label();
             this.label_salary = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
+            this.label8 = new System.Windows.Forms.Label();
             this.label_request = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.label_timekeeping = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
@@ -159,6 +166,7 @@
             this.guna2Panel4.BorderColor = System.Drawing.Color.White;
             this.guna2Panel4.BorderRadius = 20;
             this.guna2Panel4.BorderThickness = 1;
+            this.guna2Panel4.Controls.Add(this.label3);
             this.guna2Panel4.Controls.Add(this.label_team);
             this.guna2Panel4.Controls.Add(this.label9);
             this.guna2Panel4.CustomizableEdges = customizableEdges1;
@@ -173,12 +181,21 @@
             this.guna2Panel4.Size = new System.Drawing.Size(386, 140);
             this.guna2Panel4.TabIndex = 109;
             // 
+            // label3
+            // 
+            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
+            this.label3.Location = new System.Drawing.Point(258, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 55);
+            this.label3.TabIndex = 99;
+            // 
             // guna2Panel3
             // 
             this.guna2Panel3.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel3.BorderColor = System.Drawing.Color.White;
             this.guna2Panel3.BorderRadius = 20;
             this.guna2Panel3.BorderThickness = 1;
+            this.guna2Panel3.Controls.Add(this.label1);
             this.guna2Panel3.Controls.Add(this.label_task);
             this.guna2Panel3.Controls.Add(this.label7);
             this.guna2Panel3.CustomizableEdges = customizableEdges3;
@@ -193,12 +210,21 @@
             this.guna2Panel3.Size = new System.Drawing.Size(386, 140);
             this.guna2Panel3.TabIndex = 108;
             // 
+            // label1
+            // 
+            this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
+            this.label1.Location = new System.Drawing.Point(254, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 55);
+            this.label1.TabIndex = 99;
+            // 
             // guna2Panel2
             // 
             this.guna2Panel2.BackColor = System.Drawing.Color.Transparent;
             this.guna2Panel2.BorderColor = System.Drawing.Color.White;
             this.guna2Panel2.BorderRadius = 20;
             this.guna2Panel2.BorderThickness = 1;
+            this.guna2Panel2.Controls.Add(this.label4);
             this.guna2Panel2.Controls.Add(this.label_project);
             this.guna2Panel2.Controls.Add(this.label5);
             this.guna2Panel2.CustomizableEdges = customizableEdges5;
@@ -212,6 +238,14 @@
             this.guna2Panel2.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10, 5, 10, 15);
             this.guna2Panel2.Size = new System.Drawing.Size(386, 140);
             this.guna2Panel2.TabIndex = 106;
+            // 
+            // label4
+            // 
+            this.label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
+            this.label4.Location = new System.Drawing.Point(270, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 55);
+            this.label4.TabIndex = 98;
             // 
             // panelData
             // 
@@ -254,6 +288,7 @@
             this.guna2Panel1.BorderColor = System.Drawing.Color.White;
             this.guna2Panel1.BorderRadius = 20;
             this.guna2Panel1.BorderThickness = 1;
+            this.guna2Panel1.Controls.Add(this.label11);
             this.guna2Panel1.Controls.Add(this.label_salary);
             this.guna2Panel1.Controls.Add(this.label2);
             this.guna2Panel1.CustomizableEdges = customizableEdges9;
@@ -267,6 +302,14 @@
             this.guna2Panel1.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10, 5, 10, 15);
             this.guna2Panel1.Size = new System.Drawing.Size(386, 140);
             this.guna2Panel1.TabIndex = 112;
+            // 
+            // label11
+            // 
+            this.label11.Image = ((System.Drawing.Image)(resources.GetObject("label11.Image")));
+            this.label11.Location = new System.Drawing.Point(258, 44);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(58, 55);
+            this.label11.TabIndex = 102;
             // 
             // label_salary
             // 
@@ -297,6 +340,7 @@
             this.guna2Panel5.BorderColor = System.Drawing.Color.White;
             this.guna2Panel5.BorderRadius = 20;
             this.guna2Panel5.BorderThickness = 1;
+            this.guna2Panel5.Controls.Add(this.label8);
             this.guna2Panel5.Controls.Add(this.label_request);
             this.guna2Panel5.Controls.Add(this.label10);
             this.guna2Panel5.CustomizableEdges = customizableEdges11;
@@ -310,6 +354,14 @@
             this.guna2Panel5.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10, 5, 10, 15);
             this.guna2Panel5.Size = new System.Drawing.Size(386, 140);
             this.guna2Panel5.TabIndex = 111;
+            // 
+            // label8
+            // 
+            this.label8.Image = ((System.Drawing.Image)(resources.GetObject("label8.Image")));
+            this.label8.Location = new System.Drawing.Point(254, 44);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(58, 55);
+            this.label8.TabIndex = 101;
             // 
             // label_request
             // 
@@ -340,6 +392,7 @@
             this.guna2Panel6.BorderColor = System.Drawing.Color.White;
             this.guna2Panel6.BorderRadius = 20;
             this.guna2Panel6.BorderThickness = 1;
+            this.guna2Panel6.Controls.Add(this.label6);
             this.guna2Panel6.Controls.Add(this.label_timekeeping);
             this.guna2Panel6.Controls.Add(this.label12);
             this.guna2Panel6.CustomizableEdges = customizableEdges13;
@@ -353,6 +406,14 @@
             this.guna2Panel6.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10, 5, 10, 15);
             this.guna2Panel6.Size = new System.Drawing.Size(386, 140);
             this.guna2Panel6.TabIndex = 110;
+            // 
+            // label6
+            // 
+            this.label6.Image = ((System.Drawing.Image)(resources.GetObject("label6.Image")));
+            this.label6.Location = new System.Drawing.Point(270, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 55);
+            this.label6.TabIndex = 100;
             // 
             // label_timekeeping
             // 
@@ -441,6 +502,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label11;
+
+        private System.Windows.Forms.Label label1;
+
+        private System.Windows.Forms.Label label4;
 
         #endregion
         private System.Windows.Forms.Label label_project;
