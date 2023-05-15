@@ -76,14 +76,14 @@ namespace company_management.BUS
             dataGridView.Columns[8].Name = "Bonus";
             dataGridView.Rows.Clear();
 
-            foreach (var p in listProject)
+            foreach (var project in listProject)
             {
-                string creator = userDao.GetUserById(p.IdCreator).FullName;
-                string assignee = userDao.GetUserById(p.IdAssignee).FullName;
-                string team = teamDao.GetTeamById(p.IdTeam).Name;
+                string creator = userDao.GetUserById(project.IdCreator).FullName;
+                string assignee = userDao.GetUserById(project.IdAssignee).FullName;
+                string team = teamDao.GetTeamById(project.IdTeam).Name;
 
-                dataGridView.Rows.Add(p.Id, p.Name, creator, p.StartDate.ToString("d/M/yyyy"),
-                    p.EndDate.ToString("d/M/yyyy"), p.Progress + " %", assignee, team, p.Bonus.ToString("C"));
+                dataGridView.Rows.Add(project.Id, project.Name, creator, project.StartDate.ToString("d/M/yyyy"),
+                    project.EndDate.ToString("d/M/yyyy"), project.Progress + " %", assignee, team, project.Bonus.ToString("C"));
             }
         }
 

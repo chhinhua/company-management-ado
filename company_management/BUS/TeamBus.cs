@@ -36,12 +36,12 @@ namespace company_management.BUS
 
             var userDao = _userDao.Value;
             var teamDao = _teamDao.Value;
-            foreach (var t in listTeam)
+            foreach (var team in listTeam)
             {
-                string leader = userDao.GetUserById(t.IdLeader).FullName;
-                int countMembers = teamDao.CountMembers(t.Id);
+                string leader = userDao.GetUserById(team.IdLeader).FullName;
+                int countMembers = teamDao.CountMembers(team.Id);
 
-                dataGridView.Rows.Add(t.Id, t.Name, leader, t.Description, countMembers);
+                dataGridView.Rows.Add(team.Id, team.Name, leader, team.Description, countMembers);
             }
         }
 

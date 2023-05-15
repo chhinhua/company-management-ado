@@ -46,12 +46,12 @@ namespace company_management.BUS
             for (int i = 6; i < 11; i++) { dataGridView.Columns[i].DefaultCellStyle.Format = "C"; }
             dataGridView.Rows.Clear();
 
-            foreach (var s in listSalary)
+            foreach (var salary in listSalary)
             {
-                string fullName = userDao.GetUserById(s.IdUser).FullName;
-                dataGridView.Rows.Add(s.Id, fullName, s.BasicSalary.ToString("$0.00/h"), 
-                    s.TotalHours.ToString("0.0'h'"), s.OvertimeHours.ToString("0.0'h'"), s.LeaveHours.ToString("0.0'h'"), s.Bonus, s.Allowance, 
-                    s.Tax, s.Insurance , s.FinalSalary, s.FromDate.ToString("d-M-yyyy"), s.ToDate.ToString("d/M/yyyy"));
+                string fullName = userDao.GetUserById(salary.IdUser).FullName;
+                dataGridView.Rows.Add(salary.Id, fullName, salary.BasicSalary.ToString("$0.00/h"), 
+                    salary.TotalHours.ToString("0.0'h'"), salary.OvertimeHours.ToString("0.0'h'"), salary.LeaveHours.ToString("0.0'h'"), salary.Bonus, salary.Allowance, 
+                    salary.Tax, salary.Insurance , salary.FinalSalary, salary.FromDate.ToString("d-M-yyyy"), salary.ToDate.ToString("d/M/yyyy"));
             }
         }
 

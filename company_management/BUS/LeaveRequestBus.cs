@@ -49,15 +49,15 @@ namespace company_management.BUS
             dataGridView.Columns[7].Name = "Người phê duyệt";
             dataGridView.Rows.Clear();
 
-            foreach (var rq in listProject)
+            foreach (var request in listProject)
             {
-                var writer = userDao.GetUserById(rq.IdUser).FullName;
+                var writer = userDao.GetUserById(request.IdUser).FullName;
 
-                var user = userDao.GetUserById(rq.IdApprover);
+                var user = userDao.GetUserById(request.IdApprover);
                 var approver = user != null ? user.FullName : "N/A";
 
-                dataGridView.Rows.Add(rq.Id, writer, rq.RequestDate.ToString("d/M/yyyy"),
-                    rq.StartDate.ToString("d/M/yyyy"), rq.EndDate.ToString("d/M/yyyy"), rq.NumberDay, rq.Status,
+                dataGridView.Rows.Add(request.Id, writer, request.RequestDate.ToString("d/M/yyyy"),
+                    request.StartDate.ToString("d/M/yyyy"), request.EndDate.ToString("d/M/yyyy"), request.NumberDay, request.Status,
                     approver);
             }
         }

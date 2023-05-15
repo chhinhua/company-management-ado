@@ -27,5 +27,26 @@ namespace company_management.BUS
             int positionId = UserSession.LoggedInUser.IdPosition;
             return positionId == 2;
         }
+
+        public string GetPosition(User user)
+        {
+            string position = null;
+            switch (user.IdPosition)
+            {
+                case 1:
+                    position = "Manager";
+                    break;
+                case 2:
+                    position = "Leader";
+                    break;
+                case 3:
+                    position = "Employee";
+                    break;
+                case 4:
+                    position = "HR";
+                    break;
+            }
+            return position;
+        } 
     }
 }

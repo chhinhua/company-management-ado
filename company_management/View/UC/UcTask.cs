@@ -86,7 +86,7 @@ namespace company_management.View.UC
                 DialogResult result = MessageBox.Show("Delete task?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    _taskDao.Value.DeleteTask(ViewTask.Id);
+                    _taskDao.Value.DeleteTask(_selectedId);
                     LoadData(GetData());
                 }
             }

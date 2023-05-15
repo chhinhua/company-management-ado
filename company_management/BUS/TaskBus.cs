@@ -47,15 +47,15 @@ namespace company_management.BUS
             dataGridView.Columns[7].Name = "Team được giao";
             dataGridView.Rows.Clear();
 
-            foreach (var t in listTask)
+            foreach (var task in listTask)
             {
-                string creator = userDao.GetUserById(t.IdCreator).FullName;
-                string assignee = userDao.GetUserById(t.IdAssignee).FullName;
-                string team = teamDao.GetTeamById(t.IdTeam).Name;
-                var project = _projectDao.Value.GetProjectById(t.IdProject);
+                string creator = userDao.GetUserById(task.IdCreator).FullName;
+                string assignee = userDao.GetUserById(task.IdAssignee).FullName;
+                string team = teamDao.GetTeamById(task.IdTeam).Name;
+                var project = _projectDao.Value.GetProjectById(task.IdProject);
 
-                dataGridView.Rows.Add(t.Id, creator, t.TaskName, project.Name, 
-                    t.Deadline.ToString("dd/MM/yyyy"), t.Progress + " %", assignee, team);
+                dataGridView.Rows.Add(task.Id, creator, task.TaskName, project.Name, 
+                    task.Deadline.ToString("dd/MM/yyyy"), task.Progress + " %", assignee, team);
             }
         }
 

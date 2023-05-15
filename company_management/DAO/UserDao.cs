@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using company_management.BUS;
 using company_management.Utilities;
 using company_management.View;
 
@@ -14,10 +15,12 @@ namespace company_management.DAO
     {
         private readonly DBConnection _dBConnection;
         private readonly Utils _utils;
+        private readonly UserBus _userBus;
         private bool _disposed;
 
         public UserDao()
         {
+            _userBus = new UserBus();
             _dBConnection = new DBConnection();
             _utils = new Utils();
         }
@@ -30,7 +33,7 @@ namespace company_management.DAO
 
         public void LoadData(DataGridView dataGridView, List<User> users)
         {
-            dataGridView.ColumnCount = 6;
+            dataGridView.ColumnCount = 7;
             dataGridView.Columns[0].Name = "Mã";
             dataGridView.Columns[0].Visible = false;
             dataGridView.Columns[1].Name = "Tên tài khoản";
@@ -38,11 +41,13 @@ namespace company_management.DAO
             dataGridView.Columns[3].Name = "Email";
             dataGridView.Columns[4].Name = "Số điện thoại";
             dataGridView.Columns[5].Name = "Địa chỉ";
+            dataGridView.Columns[6].Name = "Chức vụ";
             dataGridView.Rows.Clear();
 
-            foreach (var x in users)
+            foreach (var user in users)
             {
-                dataGridView.Rows.Add(x.Id, x.Username, x.FullName, x.Email, x.PhoneNumber, x.Address);
+                string position = _userBus.GetPosition(user);
+                dataGridView.Rows.Add(user.Id, user.Username, user.FullName, user.Email, user.PhoneNumber, user.Address, position);
             }
         }
 
