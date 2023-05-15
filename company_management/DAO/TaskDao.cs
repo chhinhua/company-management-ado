@@ -18,6 +18,7 @@ namespace company_management.DAO
         private readonly DBConnection _dBConnection;
         private readonly Lazy<string> _connString;
         private readonly Lazy<TeamDao> _teamDao;
+        private readonly Lazy<ProjectDao> _projectDao;
         private readonly Lazy<UserDao> _userDao;
         private readonly Lazy<UserBus> _userBus;
         private bool _disposed = false;
@@ -28,6 +29,7 @@ namespace company_management.DAO
             _dBConnection = new DBConnection();
             _connString = new Lazy<string>(() => Properties.Settings.Default.connStr);
             _teamDao = new Lazy<TeamDao>(() => new TeamDao());
+            _projectDao = new Lazy<ProjectDao>(() => new ProjectDao());
             _userDao = new Lazy<UserDao>(() => new UserDao());
             _userBus = new Lazy<UserBus>(() => new UserBus());
             _utils = new Utils();
@@ -89,19 +91,27 @@ namespace company_management.DAO
             }
         }
 
-        public void UpdateTask(Task updateTask)
+        public void UpdateTask(Task task)
         {
             string query = string.Format("UPDATE task SET " +
                                          "idAssignee = '{0}', taskName = '{1}', description = '{2}', deadline = '{3}', progress = '{4}', idTeam = '{5}', bonus = '{6}', idProject = '{7}' WHERE id = '{8}'",
-                updateTask.IdAssignee, updateTask.TaskName, updateTask.Description, updateTask.Deadline,
-                updateTask.Progress, updateTask.IdTeam, updateTask.Bonus, updateTask.IdProject, updateTask.Id);
+                task.IdAssignee, task.TaskName, task.Description, task.Deadline,
+                task.Progress, task.IdTeam, task.Bonus, task.IdProject, task.Id);
+            
+            Task originalTask = GetTaskById(task.Id);
             if (_dBConnection.ExecuteQuery(query))
             {
-                _utils.Alert("Updated task successful", FormAlert.enmType.Success);
+                _utils.Alert("Đã cập nhật task", FormAlert.enmType.Success);
+
+                if (originalTask.Progress != task.Progress)
+                {
+                    int projectProgress = _projectDao.Value.GetProjectProgressForTasksById(task.IdProject);
+                    _projectDao.Value.UpdateProjectProgress(projectProgress, task.IdProject);
+                }
             }
             else
             {
-                _utils.Alert("Update task failed", FormAlert.enmType.Error);
+                _utils.Alert("Cập nhật task thất bại!", FormAlert.enmType.Error);
             }
         }
 

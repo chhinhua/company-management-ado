@@ -13,6 +13,7 @@ namespace company_management.View.UC
     {
         public static Task ViewTask;
         private readonly Lazy<TaskBus> _taskBus;
+        private readonly Lazy<ProjectBus> _projectBus;
         private readonly Lazy<TaskDao> _taskDao;
         private readonly Lazy<List<Task>> _listTask;
         private readonly Lazy<Utils> _utils;
@@ -23,6 +24,7 @@ namespace company_management.View.UC
             InitializeComponent();
             _listTask = new Lazy<List<Task>>(() => new List<Task>());
             _taskBus = new Lazy<TaskBus>(() => new TaskBus());
+            _projectBus = new Lazy<ProjectBus>(() => new ProjectBus());
             _taskDao = new Lazy<TaskDao>(() => new TaskDao());
             _utils = new Lazy<Utils>(() => new Utils());
         }
@@ -30,6 +32,7 @@ namespace company_management.View.UC
         private void UC_Task_Load(object sender, EventArgs e)
         {
             LoadData(GetData());
+            LoadProjectToCombobox();
         }
         
         private void LoadData(List<Task> tasks)
@@ -37,6 +40,7 @@ namespace company_management.View.UC
             LoadDataGridview(tasks);
             LoadProgressChart(tasks);
             CheckAddButtonStatus();
+            _utils.Value.SetComboBoxDropDownWidth(combobox_taskOfProject);
         }
         
         private List<Task> GetData()
@@ -64,6 +68,11 @@ namespace company_management.View.UC
             taskBus.LoadDataGridview(tasks, dataGridView_Task);
         }
 
+        private void LoadProjectToCombobox()
+        {
+            _projectBus.Value.LoadProjectToCombobox(combobox_taskOfProject);
+        }
+        
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             FormAddTask addTask = new FormAddTask();
@@ -173,6 +182,24 @@ namespace company_management.View.UC
             }
             
             LoadDataGridview(tasks);
+        }
+
+        private void combobox_taskOfProject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var tasks = _listTask.Value;
+            tasks.Clear();
+
+            if (combobox_taskOfProject.SelectedIndex == 0)
+            {
+                tasks = _taskBus.Value.GetListTaskByPosition();
+            }
+            else
+            {
+                var selectedProject = (Project)combobox_taskOfProject.SelectedItem;
+                tasks = _taskBus.Value.GetTasksByProject(selectedProject.Id);
+            }
+
+            LoadData(tasks);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using company_management.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using company_management.View;
@@ -44,9 +45,9 @@ namespace company_management.DAO
         public void UpdateProject(Project project)
         {
             string query = string.Format("UPDATE project SET idCreator='{0}', idAssignee='{1}', name='{2}'," +
-                                         "description='{3}', startDate='{4}', endDate='{5}', progress='{6}', idTeam='{7}', bonus='{8}' WHERE id='{9}'",
+                                         "description='{3}', startDate='{4}', endDate='{5}', idTeam='{6}', bonus='{7}' WHERE id='{8}'",
                 project.IdCreator, project.IdAssignee, project.Name, project.Description,
-                project.StartDate, project.EndDate, project.Progress, project.IdTeam, project.Bonus, project.Id);
+                project.StartDate, project.EndDate, project.IdTeam, project.Bonus, project.Id);
             if (_dBConnection.ExecuteQuery(query))
             {
                 _utils.Alert("Updated successful", FormAlert.enmType.Success);
@@ -54,6 +55,19 @@ namespace company_management.DAO
             else
             {
                 _utils.Alert("Update failed", FormAlert.enmType.Error);
+            }
+        }
+        
+        public void UpdateProjectProgress(int progress, int id)
+        {
+            string query = string.Format("UPDATE project SET  progress ='{0}' WHERE id='{1}'", progress, id);
+            if (_dBConnection.ExecuteQuery(query))
+            {
+                _utils.Alert("Đã cập nhật tiến độ dự án", FormAlert.enmType.Success);
+            }
+            else
+            {
+                _utils.Alert("Cập nhật tiến độ dự án thất bại!", FormAlert.enmType.Error);
             }
         }
 
@@ -118,6 +132,35 @@ namespace company_management.DAO
         {
             string query = $"SELECT DISTINCT FROM project WHERE idTeam = {idTeam}";
             return _dBConnection.GetObjectByQuery<Project>(query);
+        }
+
+        public int GetProjectProgressForTasksById(int idProject)
+        {
+            string query = "SELECT AVG(progress) FROM task WHERE idProject = @idProject";
+
+            using (SqlConnection connection = new SqlConnection(_dBConnection.connString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@idProject", idProject);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        double averageProgress = Convert.ToDouble(result);
+                        return Convert.ToInt32(averageProgress);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // handle exception
+                }
+            }
+
+            return 0;
         }
     }
 }

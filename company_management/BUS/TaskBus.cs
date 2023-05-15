@@ -35,31 +35,27 @@ namespace company_management.BUS
             var userDao = _userDao.Value;
             var teamDao = _teamDao.Value;
 
-            dataGridView.ColumnCount = 7;
+            dataGridView.ColumnCount = 8;
             dataGridView.Columns[0].Name = "Mã";
             dataGridView.Columns[0].Visible = false;
             dataGridView.Columns[1].Name = "Người tạo";
             dataGridView.Columns[2].Name = "Tên task";
-            dataGridView.Columns[2].Width = 275;
-            dataGridView.Columns[3].Name = "Deadline";
-            dataGridView.Columns[4].Name = "Tiến độ";
-            dataGridView.Columns[5].Name = "Người được giao";
-            dataGridView.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns[6].Name = "Team được giao";
-            dataGridView.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns[3].Name = "Dự án";
+            dataGridView.Columns[4].Name = "Deadline";
+            dataGridView.Columns[5].Name = "Tiến độ";
+            dataGridView.Columns[6].Name = "Người được giao";
+            dataGridView.Columns[7].Name = "Team được giao";
             dataGridView.Rows.Clear();
-
-            // sort theo deadline tăng dần
-            listTask.Sort((x, y) => DateTime.Compare(x.Deadline, y.Deadline));
 
             foreach (var t in listTask)
             {
                 string creator = userDao.GetUserById(t.IdCreator).FullName;
                 string assignee = userDao.GetUserById(t.IdAssignee).FullName;
                 string team = teamDao.GetTeamById(t.IdTeam).Name;
+                var project = _projectDao.Value.GetProjectById(t.IdProject);
 
-                dataGridView.Rows.Add(t.Id, creator, t.TaskName, t.Deadline.ToString("dd/MM/yyyy"), t.Progress + " %",
-                    assignee, team);
+                dataGridView.Rows.Add(t.Id, creator, t.TaskName, project.Name, 
+                    t.Deadline.ToString("dd/MM/yyyy"), t.Progress + " %", assignee, team);
             }
         }
 
@@ -176,6 +172,11 @@ namespace company_management.BUS
         {
             var taskDao = _taskDao.Value;
             return taskDao.SearchTasks(txtSearch);
+        }
+        
+        public List<Task> GetTasksByProject(int idProject)
+        {
+            return GetListTaskByPosition().Where(t => t.IdProject == idProject).ToList();
         }
 
         public List<Task> GetTodoTasks() => GetListTaskByPosition().Where(t => t.Progress == 0).ToList();

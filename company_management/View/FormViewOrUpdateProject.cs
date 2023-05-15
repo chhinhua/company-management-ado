@@ -47,7 +47,6 @@ namespace company_management.View
             _utils.CheckEmployeeIsReadOnlyStatus(textbox_projectName);
             _utils.CheckEmployeeIsReadOnlyStatus(textbox_Desciption);
             _utils.CheckEmployeeIsReadOnlyStatus(textBox_projectBonus);
-            _utils.CheckEmployeeNotEnableStatus(combobox2_progress);
             _utils.CheckEmployeeNotEnableStatus(dateTime_startDate2);
             _utils.CheckEmployeeNotEnableStatus(dateTime_endDate2);
             _utils.CheckEmployeeNotVisibleStatus(button_save);
@@ -97,7 +96,6 @@ namespace company_management.View
             progressValue2.Text = project.Progress.ToString("0.'%'");
 
             var taskBus = _taskBus.Value;
-            taskBus.SelectComboBoxItemByValue(combobox2_progress, project.Progress);
             try
             {
                 dateTime_startDate2.Value = project.StartDate;
@@ -115,7 +113,6 @@ namespace company_management.View
             Project project = projectDao.GetProjectById(_projectId);
             project.Name = textbox_projectName.Text;
             project.Description = textbox_Desciption.Text;
-            project.Progress = int.Parse(combobox2_progress.SelectedItem.ToString());
             project.StartDate = dateTime_startDate2.Value;
             project.EndDate = dateTime_endDate2.Value;
             if (textBox_projectBonus.Text != "")
@@ -148,13 +145,6 @@ namespace company_management.View
                 return false;
             }
             return true;
-        }
-
-        private void combobox2_progress_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int progress = Convert.ToInt32(combobox2_progress.SelectedItem);
-            circleProgressBar2.Value = progress;
-            progressValue2.Text = progress.ToString("0.'%'");
         }
     }
 }

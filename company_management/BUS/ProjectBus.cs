@@ -67,7 +67,6 @@ namespace company_management.BUS
             dataGridView.Columns[0].Name = "Id";
             dataGridView.Columns[0].Visible = false;
             dataGridView.Columns[1].Name = "Tên Project";
-            dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns[2].Name = "Người tạo";
             dataGridView.Columns[3].Name = "Ngày bắt đầu";
             dataGridView.Columns[4].Name = "Deadline";
@@ -115,7 +114,7 @@ namespace company_management.BUS
             listProject.TrimExcess();
         }
 
-        [SuppressMessage("ReSharper", "CoVariantArrayConversion")]
+        //[SuppressMessage("ReSharper", "CoVariantArrayConversion")]
         public void LoadProjectToCombobox(ComboBox comboBox)
         {
             var util = _utils.Value;

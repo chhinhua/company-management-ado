@@ -218,5 +218,19 @@ namespace company_management.Utilities
             inprogress.Text = inprogressPercentFormatted + @"%";
             done.Text = donePercentFormatted + @"%";
         }
+        
+        public void SetComboBoxDropDownWidth(ComboBox comboBox)
+        {
+            int maxWidth = 0;
+            foreach (var item in comboBox.Items)
+            {
+                int width = TextRenderer.MeasureText(item.ToString(), comboBox.Font).Width;
+                if (width > maxWidth)
+                {
+                    maxWidth = width;
+                }
+            }
+            comboBox.DropDownWidth = maxWidth;
+        }
     }
 }
