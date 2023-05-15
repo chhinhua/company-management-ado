@@ -34,16 +34,16 @@ namespace company_management.BUS
             switch (user.IdPosition)
             {
                 case 1:
-                    position = "Manager";
+                    position = "Quản lý";
                     break;
                 case 2:
-                    position = "Leader";
+                    position = "Trưởng nhóm";
                     break;
                 case 3:
-                    position = "Employee";
+                    position = "Nhân viên";
                     break;
                 case 4:
-                    position = "HR";
+                    position = "Human Resources (HR)";
                     break;
             }
             return position;
