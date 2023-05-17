@@ -93,10 +93,8 @@ namespace company_management.DAO
 
         public void UpdateTask(Task task)
         {
-            string query = string.Format("UPDATE task SET " +
-                                         "idAssignee = '{0}', taskName = '{1}', description = '{2}', deadline = '{3}', progress = '{4}', idTeam = '{5}', bonus = '{6}', idProject = '{7}' WHERE id = '{8}'",
-                task.IdAssignee, task.TaskName, task.Description, task.Deadline,
-                task.Progress, task.IdTeam, task.Bonus, task.IdProject, task.Id);
+            string query = string.Format("UPDATE task SET idAssignee = '{0}', taskName = '{1}', description = '{2}', deadline = '{3}', progress = '{4}', idTeam = '{5}', bonus = '{6}', idProject = '{7}' WHERE id = '{8}'",
+                task.IdAssignee, task.TaskName, task.Description, task.Deadline, task.Progress, task.IdTeam, task.Bonus, task.IdProject, task.Id);
             
             Task originalTask = GetTaskById(task.Id);
             if (_dBConnection.ExecuteQuery(query))
@@ -131,14 +129,7 @@ namespace company_management.DAO
         public void DeleteTasksByProject(int projectId)
         {
             string query = string.Format("DELETE FROM task WHERE idProject = {0}", projectId);
-            if (_dBConnection.ExecuteQuery(query))
-            {
-                _utils.Alert("Deleted task successful", FormAlert.enmType.Success);
-            }
-            else
-            {
-                _utils.Alert("Delete task failed", FormAlert.enmType.Error);
-            }
+            _dBConnection.ExecuteQuery(query);
         }
 
         public Task GetTaskById(int id)

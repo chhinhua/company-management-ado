@@ -14,12 +14,14 @@ namespace company_management.DAO
     {
         private readonly DBConnection _dBConnection;
         private readonly Lazy<TeamDao> _teamDao;
+        private readonly Lazy<TaskDao> _taskDao;
         private readonly Utils _utils;
 
         public ProjectDao()
         {
             _dBConnection = new DBConnection();
             _teamDao = new Lazy<TeamDao>(() => new TeamDao());
+            _taskDao = new Lazy<TaskDao>(() => new TaskDao());
             _utils = new Utils();
         }
 
@@ -61,14 +63,7 @@ namespace company_management.DAO
         public void UpdateProjectProgress(int progress, int id)
         {
             string query = string.Format("UPDATE project SET  progress ='{0}' WHERE id='{1}'", progress, id);
-            if (_dBConnection.ExecuteQuery(query))
-            {
-                _utils.Alert("Đã cập nhật tiến độ dự án", FormAlert.enmType.Success);
-            }
-            else
-            {
-                _utils.Alert("Cập nhật tiến độ dự án thất bại!", FormAlert.enmType.Error);
-            }
+            _dBConnection.ExecuteQuery(query);
         }
 
         public void DeleteProject(int id)
@@ -76,6 +71,7 @@ namespace company_management.DAO
             string query = string.Format("DELETE FROM project WHERE id = {0}", id);
             if (_dBConnection.ExecuteQuery(query))
             {
+                _taskDao.Value.DeleteTasksByProject(id);
                 _utils.Alert("Deleted project successful", FormAlert.enmType.Success);
             }
             else

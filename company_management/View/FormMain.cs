@@ -16,11 +16,13 @@ namespace company_management.View
     public partial class FormMain : Form
     {
         private readonly ImageDao _imageDa0;
+        private readonly UserDao _userDao;
 
         public FormMain()
         {
             InitializeComponent();
             _imageDa0 = new ImageDao();
+            _userDao = new UserDao();
         }
 
         private void AddUc(UserControl uc)
@@ -116,6 +118,8 @@ namespace company_management.View
         private void Form_Main_Load(object sender, EventArgs e)
         {
             _imageDa0.ShowImageInPictureBox(UserSession.LoggedInUser.Avatar, picturebox_avatar);
+            User user = _userDao.GetUserById(UserSession.LoggedInUser.Id);
+            label_name.Text = user.FullName;
             UcHome uCHome = new UcHome();
             AddUc(uCHome);
         }

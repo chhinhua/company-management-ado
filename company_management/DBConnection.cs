@@ -109,7 +109,6 @@ namespace company_management
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-                MessageBox.Show(e.ToString());
             }
 
             return action;

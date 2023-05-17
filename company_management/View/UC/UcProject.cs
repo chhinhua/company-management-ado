@@ -147,12 +147,7 @@ namespace company_management.View.UC
                     DialogResult result2= MessageBox.Show("Xác nhận xóa dự án?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result2 == DialogResult.Yes)
                     {
-                        var taskDao = _taskDao.Value;
-                        taskDao.DeleteTasksByProject(_selectedId);
-                    
-                        var projectDao = _projectDao.Value;
-                        projectDao.DeleteProject(_selectedId);
-                    
+                        _projectDao.Value.DeleteProject(_selectedId);
                         LoadData(GetData());
                     }
                 }
