@@ -13,10 +13,6 @@ namespace company_management.DAO
 {
     public sealed class UserDao : IDisposable
     {
-        private readonly decimal BasicSalary = 12.5m;
-        private readonly decimal Allowance = 250.0m;
-        private readonly decimal Tax = 25.0m;
-        private readonly decimal Insurance = 20.0m;
         private readonly DBConnection _dBConnection;
         private readonly Utils _utils;
         private readonly UserBus _userBus;
@@ -88,14 +84,18 @@ namespace company_management.DAO
         public void AddUser(User user)
         {
             string sqlStr = string.Format(
-                "INSERT INTO users(username, password, fullname, email, phoneNumber, address, idRole)" +
-                "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')",
-                user.Username, user.Password, user.FullName, user.Email, user.PhoneNumber, user.Address, user.IdRole);
+                "INSERT INTO users(username, password, fullname, email, phoneNumber, address, idRole, idPosition)" +
+                "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')",
+                user.Username, user.Password, user.FullName, user.Email, user.PhoneNumber, user.Address, user.IdRole,
+                user.IdPosition);
             if (_dBConnection.ExecuteQuery(sqlStr))
             {
-                string query = string.Format("INSERT INTO _salary(idUser, basicSalary, allowance, tax, insurance)" +
+                _utils.Alert("Thêm user thành công", FormAlert.enmType.Success);
+
+                var newUser = GetUserByUsername(user.Username);
+                string query = string.Format("INSERT INTO user_salary(idUser, basicSalary, allowance, tax, insurance)" +
                                              "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')",
-                    user.Id, BasicSalary, Allowance, Tax, Insurance);
+                    newUser.Id, Constants.BasicSalary, Constants.Allowance, Constants.Tax, Constants.Insurance);
                 _dBConnection.ExecuteQuery(query);
             }
         }
@@ -123,8 +123,19 @@ namespace company_management.DAO
 
         public void DeleteUser(int id)
         {
-            string sqlStr = string.Format("DELETE FROM users WHERE id = '{0}'", id);
-            _dBConnection.ExecuteQuery(sqlStr);
+            string query = string.Format("DELETE FROM user_salary WHERE idUser = '{0}'", id);
+           
+            if (_dBConnection.ExecuteQuery(query))
+            {
+                string sqlStr = string.Format("DELETE FROM users WHERE id = '{0}'", id);
+                if (_dBConnection.ExecuteQuery(sqlStr))
+                {
+                    _utils.Alert("Xóa thành công", FormAlert.enmType.Success);
+                }else
+                {
+                    _utils.Alert("Xóa không thành công", FormAlert.enmType.Error);
+                }
+            }
         }
 
         public User GetUserById(int id)

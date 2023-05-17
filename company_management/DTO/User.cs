@@ -17,7 +17,7 @@ namespace company_management.DTO
         public User() { }
         
         public User(string username, string password, string fullName,
-           string email, string phoneNumber, string address, int idRole)
+           string email, string phoneNumber, string address, int idRole, int idPosition)
         {
             Username = username;
             Password = password;
@@ -26,6 +26,7 @@ namespace company_management.DTO
             PhoneNumber = phoneNumber;
             Address = address;
             IdRole = idRole;
+            IdPosition = idPosition;
         }
     }
 }

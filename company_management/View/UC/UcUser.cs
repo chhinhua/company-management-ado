@@ -48,8 +48,8 @@ namespace company_management.View.UC
 
         private User GetUserFromTextBox()
         {
-            return new User(txtbox_username.Text, Constants.DEFAULT_INIT_PASSWORD, txtbox_fullname.Text,
-                txtbox_email.Text, txtbox_phoneNumber.Text, txtbox_address.Text, Constants.DEFAULT_USER_ROLE_ID);
+            return new User(txtbox_username.Text, Constants.DefaultInitPassword, txtbox_fullname.Text,
+                txtbox_email.Text, txtbox_phoneNumber.Text, txtbox_address.Text, Constants.DefaultUserRoleId, Constants.DefaultUserPosition);
         }
 
         private User GetUserEditedUser()
@@ -115,6 +115,7 @@ namespace company_management.View.UC
             txtbox_phoneNumber.Clear();
             txtbox_address.Clear();
             btn_Save.Enabled = false;
+            _selectedUserId = 0;
         }
 
         private void btnAdd_Click_1(object sender, EventArgs e)
@@ -131,8 +132,7 @@ namespace company_management.View.UC
 
                 if (result == DialogResult.Yes)
                 {
-                    var userDao = _userDao.Value;
-                    userDao.DeleteUser(_selectedUserId);
+                    _userDao.Value.DeleteUser(_selectedUserId);
                     LoadData();
                 }
             }
@@ -179,10 +179,9 @@ namespace company_management.View.UC
             if (CheckDataInput())
             {
                 var userDao = _userDao.Value;
-                if (_user == null)
+                if (_selectedUserId == 0)
                 {
                     userDao.AddUser(GetUserFromTextBox());
-                    this.Alert("Add successful", FormAlert.enmType.Success);
                 }
                 else
                 {
