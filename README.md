@@ -3,6 +3,7 @@
 Đây là một ứng dụng quản lý công ty được phát triển sử dụng công nghệ Windows Form và ngôn ngữ C#.
 
 ### [Github repository](https://github.com/chhinhua/company-management-project) 🔗
+### [File Database Script- SQL](https://drive.google.com/file/d/1x8lqrA9A8jkrzXbCnBYBi8YaJVWA_ME7/view?usp=sharing) 🔗
 
 ## Mô tả 📜
 
