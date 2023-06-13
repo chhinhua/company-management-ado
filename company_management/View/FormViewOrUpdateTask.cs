@@ -56,6 +56,7 @@ namespace company_management.View
 
             circleProgressBar.Value = task.Progress;
             progressValue.Text = task.Progress + @"%";
+            dateTime_deadline.Value = task.Deadline;
 
             var taskBus = _taskBus.Value;
             taskBus.SelectComboBoxItemByValue(combobox_progress, task.Progress);
@@ -83,15 +84,6 @@ namespace company_management.View
                 taskBus.SelectComboboxItemById<User>(combbox_Assignee, assigneeUser.Id);
             }
             taskBus.SelectComboboxItemById<Project>(combbox_Project, idProject);
-
-            try
-            {
-                dateTime_deadline.Value = UcTask.ViewTask.Deadline;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
         }
 
         private bool CheckDataInput()

@@ -123,6 +123,7 @@ namespace company_management.View.UC
                 if (value != DBNull.Value)
                 {
                     _selectedId = Convert.ToInt32(value);
+                    ViewTask = _taskDao.Value.GetTaskById(_selectedId);
                 }
             }
         }
